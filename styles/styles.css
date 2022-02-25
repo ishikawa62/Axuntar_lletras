@@ -1,0 +1,190 @@
+
+/* Pilla la fuente trebuchetMS del archivo .ttf */
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: url(trebuchetMS.ttf);
+}
+
+*{
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    color: var(--primary-text-color);
+    -webkit-tap-highlight-color: transparent;
+}
+html{
+    --primary-color: rgb(0, 221, 100);
+    --secondary-color: rgb(44, 44, 44);
+    --color-gray: rgb(100, 100, 100);
+    --dark-gray: rgb(51, 51, 51);
+    --light-gray: rgb(144, 144, 144);
+    --primary-text-color: rgb(9, 9, 9);
+    --secondary-text-color: rgb(230, 230, 230);
+    --background-color: rgb(247, 247, 247);
+    --transparent-background: rgba(240, 240, 240, 0.9);
+    --keyboard-button-color: rgb(218, 218, 218);
+    --board-box-border: 1px solid var(--light-gray);
+    --board-box-active-border: 2px solid var(--color-gray);
+    --correct-color: #538d4e;
+    --present-color: #b59f3b;
+    --font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', sans-serif;
+    font-size: 10px;
+    --dark-mode-transition-time: 1s;
+}
+html.dark{
+    --primary-color: rgb(0, 151, 68);
+    --color-gray: rgb(51, 51, 51);
+    --dark-gray: rgb(51, 51, 51);
+    --light-gray: rgb(80, 80, 80);
+    --primary-text-color: white;
+    --background-color: rgb(25, 25, 25);
+    --transparent-background: rgba(25, 25, 25, 0.9);
+    --keyboard-button-color: rgb(93, 93, 93);
+    --board-box-border: 1px solid var(--dark-gray);
+    --board-box-active-border: 2px solid var(--light-gray);
+}
+html.high-contrast{
+    --primary-color: #DD6D34;
+    --correct-color: #DD6D34;
+    --present-color: #78ADE1;
+}
+
+body{
+    background-color: var(--background-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    transition: background var(--dark-mode-transition-time);
+}
+button{
+    cursor: pointer;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 60rem;
+    padding: 0 clamp(2rem, 3vw, 3rem);
+    margin: 0 auto;
+}
+.heading-text{
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+.heading-text h1{
+    font-size: clamp(2rem, 2vw, 3rem);
+    letter-spacing: 0.3rem;
+    margin: 0;
+}
+.heading-text a{
+    font-size: clamp(1rem, 1vw, 1.4rem);
+    font-weight: bold;
+    margin: 0;
+}
+.header-elements > span{
+    margin: 0 0.5rem;
+    cursor: pointer;
+}
+.header-elements svg{
+    width: clamp(2rem, 2vw, 2.5rem);
+    height: clamp(2rem, 2vw, 2.5rem);
+    fill: var(--primary-text-color);
+}
+
+main{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    padding: 1rem;
+}
+
+#letter-board{
+    max-width: 500px;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(5, clamp(3rem, 12vw, 6rem));
+    grid-template-rows: repeat(6, clamp(3rem, 12vw, 6rem));
+    grid-gap: 0.7rem;
+    align-content: center;
+}
+#letter-board > .box{
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', sans-serif;
+    font-size: clamp(2rem, 7vw, 4rem);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--board-box-border);
+    border-radius: 0.3rem;
+    transition: background 50ms ease;
+}
+#letter-board > [data-state="active"]{
+    border: var(--board-box-active-border);
+}
+
+
+#keyboard{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+    padding: clamp(2rem, 10vh, 4rem);
+}
+#keyboard > .row{
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+}
+.keyboard_key{
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    background-color: var(--keyboard-button-color);
+    padding: clamp(0.4rem, 1vh, 1.1rem) clamp(0.6rem, 2vw, 1.1rem);
+    margin: 0.5rem clamp(0.2rem, 1vw, 1rem);
+    border: 0;
+    border-radius: 0.5rem;
+    transition: transform 100ms step-start, background 500ms;
+    cursor: pointer;
+    user-select: none;
+}
+.keyboard_key > svg{
+    fill: var(--primary-text-color);
+}
+
+
+[data-state="present"]{
+    background-color: var(--present-color);
+    color: var(--secondary-text-color);
+}
+[data-state="correct"]{
+    background-color: var(--correct-color);
+    color: var(--secondary-text-color);
+}
+[data-state="wrong"]{
+    background-color: var(--color-gray);
+    color: var(--secondary-text-color);
+}
+
+@media screen and (min-width: 900px) and (min-height: 800px) {
+    :root{
+        font-size: 12px;
+    }
+}
+@media screen and (min-width: 1900px) and (min-height: 1000px) {
+    :root{
+        font-size: 14px;
+    }
+}
