@@ -187,7 +187,7 @@ function processSubmit(boxes = getActiveBoxes(), checkWinner = true) {
                     // prueba si algo cambia a la izq o no
                     else if (getEmptyBoxes().length === 0) {
                         // enseña notificacion si nada cambia
-                        createAlert(`Today's word is "${todaysWord.toUpperCase()}"`, 5000)
+                        createAlert(`Erro: a palabra de hoi é "${todaysWord.toUpperCase()}"`, 9000)
                         saveDataInLocalStorage({
                             wordlePlayed: getSavedData()?.wordlePlayed + 1 || 1,
                             currentStreak: 1
