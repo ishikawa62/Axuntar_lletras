@@ -112,7 +112,7 @@ function processSubmit(boxes = getActiveBoxes(), checkWinner = true) {
 
     // prueba si las 5 letras estan o no
     if (boxes.length < 5) {
-        createAlert("Faltan lletras")
+        createAlert("Faltan letras")
         allowInput()
         return
     }
